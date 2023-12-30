@@ -1,0 +1,25 @@
+--cpu Cortex-M3
+"my_toy_2\startup_stm32f103xb.o"
+"my_toy_2\main.o"
+"my_toy_2\gpio.o"
+"my_toy_2\stm32f1xx_it.o"
+"my_toy_2\stm32f1xx_hal_msp.o"
+"my_toy_2\stm32f1xx_hal_gpio_ex.o"
+"my_toy_2\stm32f1xx_hal_tim.o"
+"my_toy_2\stm32f1xx_hal_tim_ex.o"
+"my_toy_2\stm32f1xx_hal.o"
+"my_toy_2\stm32f1xx_hal_rcc.o"
+"my_toy_2\stm32f1xx_hal_rcc_ex.o"
+"my_toy_2\stm32f1xx_hal_gpio.o"
+"my_toy_2\stm32f1xx_hal_dma.o"
+"my_toy_2\stm32f1xx_hal_cortex.o"
+"my_toy_2\stm32f1xx_hal_pwr.o"
+"my_toy_2\stm32f1xx_hal_flash.o"
+"my_toy_2\stm32f1xx_hal_flash_ex.o"
+"my_toy_2\stm32f1xx_hal_exti.o"
+"my_toy_2\system_stm32f1xx.o"
+"my_toy_2\ps2.o"
+--strict --scatter "my_toy_2\my_toy_2.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "my_toy_2.map" -o my_toy_2\my_toy_2.axf
