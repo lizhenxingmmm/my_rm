@@ -40,4 +40,5 @@ test_of_my_lib\ps2.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 test_of_my_lib\ps2.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 test_of_my_lib\ps2.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 test_of_my_lib\ps2.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
+test_of_my_lib\ps2.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 test_of_my_lib\ps2.o: ../Core/Inc/gpio.h

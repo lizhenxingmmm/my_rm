@@ -1,8 +1,5 @@
 #include "drv_can.h"
 
-uint8_t can_tx_buffer[8]={0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
-
-
 /**
  * @brief can初始化(默认can1分配滤波器0和1,can2分配滤波器13和14,均使能FIFO0和FIFO1)
  * @param hcan can类型句柄指针

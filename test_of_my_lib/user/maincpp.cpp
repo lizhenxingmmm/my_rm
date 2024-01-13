@@ -8,6 +8,7 @@
 #include "spi.h"
 #include "tim.h"
 #include "gpio.h"
+#include "usart.h"
 
 #include "PS2.h"
 #include "i2c_oled.hpp"
@@ -17,9 +18,10 @@
 #include "ADCtest.h"
 #include "drv_can.h"
 #include "RMmotor.hpp"
-
+#include "serialplot.hpp"
 
 /* USER CODE BEGIN 0 */
+RMmotor PTZ(0x1ff,0x205);
 float* ist_data;
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
   if(GPIO_Pin==DRYD.GPIO_Pin){
@@ -27,37 +29,53 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
   }
 }
 float accel[3],gyro[3],temperature;
-int16_t angle;
-int16_t speed;
-int16_t torque;
-int16_t temperature_motor;
 void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan){
 	CAN_RxHeaderTypeDef header;
-	uint8_t data[8]; //用于接收数据(不知道为什么，这里不能是uint8_t* data;)
+	uint8_t data[8]; //用于接收数据(不知道为什么，这里不能是uint8_t* data;)(知道了，只定义指针没有开辟连续的数组空间)
 	HAL_CAN_GetRxMessage(hcan,CAN_FILTER_FIFO1,&header,data);
-  int16_t _angle=(((int16_t)data[0])<<8)+data[1];
-  int16_t _speed=(((int16_t)data[2])<<8)+data[3];
-  int16_t _torque=(((int16_t)data[4])<<8)+data[5];
-  int16_t _temperature=data[7];
-  angle=_angle;
-  speed=_speed;
-  torque=_torque;
-  temperature_motor=_temperature;
-  HAL_GPIO_WritePin(GPIOH,GPIO_PIN_10,GPIO_PIN_SET);
+  PTZ.receive_data(header.StdId,data);
 }
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan){
 	CAN_RxHeaderTypeDef header;
-	uint8_t data[8]; //用于接收数据(不知道为什么，这里不能是uint8_t* data;)
+	uint8_t data[8]; //用于接收数据(不知道为什么，这里不能是uint8_t* data;)(知道了，只定义指针没有开辟连续的数组空间)
 	HAL_CAN_GetRxMessage(hcan,CAN_FILTER_FIFO0,&header,data);
-  int16_t _angle=(((int16_t)data[0])<<8)+data[1];
-  int16_t _speed=(((int16_t)data[2])<<8)+data[3];
-  int16_t _torque=(((int16_t)data[4])<<8)+data[5];
-  int16_t _temperature=data[7];
-  angle=_angle;
-  speed=_speed;
-  torque=_torque;
-  temperature_motor=_temperature;
-  HAL_GPIO_WritePin(GPIOH,GPIO_PIN_10,GPIO_PIN_SET);
+  PTZ.receive_data(header.StdId,data);
+}
+uint8_t rx_uart_data;
+float target=0;
+float P=0;
+float I=0;
+float D=0;
+float play=0;
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+    if(rx_uart_data=='0'){
+      target=0;
+    }
+    if(rx_uart_data=='1'){
+      target=100;
+    }
+    if(rx_uart_data=='p'){
+      P+=1;
+    }
+    if(rx_uart_data=='i'){
+      I+=1;
+    }
+    if(rx_uart_data=='d'){
+      D+=1;
+    }
+    if(rx_uart_data=='P'){
+      P-=1;
+    }
+    if(rx_uart_data=='I'){
+      I-=1;
+    }
+    if(rx_uart_data=='D'){
+      D-=1;
+    }
+    if(rx_uart_data=='q'){
+      play=1;
+    }
+    HAL_UART_Receive_DMA(&huart6,&rx_uart_data,1);
 }
 /* USER CODE END 0 */
 
@@ -77,16 +95,25 @@ while(1){
 }
 CAN_Init(&hcan1);
 Vrefint_Init();
+HAL_UART_Receive_DMA(&huart6,&rx_uart_data,1);
 /* USER CODE END 2 */
 /*infinit loop*/
 while(1){
-    send_to_motors(0,0,0,0,0x1ff,&hcan1);
-    OLED_ShowNum_withsign(0,0,angle,6,16,1);
-    OLED_ShowNum_withsign(0,16,speed,6,16,1);
-    OLED_ShowNum_withsign(0,32,torque,6,16,1);
-    OLED_ShowNum_withsign(0,48,temperature_motor,6,16,1);
+  send_to_serialplot_2(target,PTZ.speed,huart6);
+    send_to_motors(PTZ.pid_calcu_speed(target,PTZ.speed,P,I,D,1000,25000,0),0,0,0,0x1ff,&hcan1);
+    OLED_ShowNum_withsign(0,0,PTZ.angle,6,16,1);
+    OLED_ShowNum_withsign(0,16,PTZ.speed,6,16,1);
+    OLED_ShowNum_withsign(0,32,PTZ.torque,6,16,1);
+    OLED_ShowNum_withsign(0,48,PTZ.temperature,6,16,1);
     OLED_ShowNum_withsign(64,0,get_battery_voltage(),6,16,1);
-    OLED_Refresh();
+    OLED_ShowNum_withsign(64,16,P,6,16,1);
+    OLED_ShowNum_withsign(64,32,I,6,16,1);
+    OLED_ShowNum_withsign(64,48,D,6,16,1);
+    if(play){
+      OLED_Refresh();
+      play=0;
+    }
 }
 }
+
 

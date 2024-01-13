@@ -38,4 +38,5 @@ test_of_my_lib\drv_can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_
 test_of_my_lib\drv_can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 test_of_my_lib\drv_can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 test_of_my_lib\drv_can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
+test_of_my_lib\drv_can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 test_of_my_lib\drv_can.o: ../Core/Inc/can.h

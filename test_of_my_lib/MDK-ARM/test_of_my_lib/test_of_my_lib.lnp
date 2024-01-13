@@ -8,6 +8,7 @@
 "test_of_my_lib\i2c.o"
 "test_of_my_lib\spi.o"
 "test_of_my_lib\tim.o"
+"test_of_my_lib\usart.o"
 "test_of_my_lib\stm32f4xx_it.o"
 "test_of_my_lib\stm32f4xx_hal_msp.o"
 "test_of_my_lib\stm32f4xx_hal_adc.o"
@@ -32,6 +33,7 @@
 "test_of_my_lib\stm32f4xx_hal_spi.o"
 "test_of_my_lib\stm32f4xx_hal_tim.o"
 "test_of_my_lib\stm32f4xx_hal_tim_ex.o"
+"test_of_my_lib\stm32f4xx_hal_uart.o"
 "test_of_my_lib\system_stm32f4xx.o"
 "test_of_my_lib\ist8310.o"
 "test_of_my_lib\macanum.o"
@@ -42,6 +44,7 @@
 "test_of_my_lib\adctest.o"
 "test_of_my_lib\rmmotor.o"
 "test_of_my_lib\maincpp.o"
+"test_of_my_lib\serialplot.o"
 --strict --scatter "test_of_my_lib\test_of_my_lib.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

@@ -37,12 +37,14 @@ test_of_my_lib\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.
 test_of_my_lib\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 test_of_my_lib\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 test_of_my_lib\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
+test_of_my_lib\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 test_of_my_lib\main.o: ../Core/Inc/adc.h
 test_of_my_lib\main.o: ../Core/Inc/can.h
 test_of_my_lib\main.o: ../Core/Inc/dma.h
 test_of_my_lib\main.o: ../Core/Inc/i2c.h
 test_of_my_lib\main.o: ../Core/Inc/spi.h
 test_of_my_lib\main.o: ../Core/Inc/tim.h
+test_of_my_lib\main.o: ../Core/Inc/usart.h
 test_of_my_lib\main.o: ../Core/Inc/gpio.h
 test_of_my_lib\main.o: ../user/PS2.h
 test_of_my_lib\main.o: D:\keil\ARM\ARMCC\Bin\..\include\stdio.h

@@ -42,11 +42,11 @@ while(1){
     break;
   }
 }
-    (2)BMI088_read(float accel[3],float gyro[3],float* temperature);
-    读数据
-    (在main.c中定义好float accel[3],gyro[3],temperature;)
-    accel[3]对应x,y,z
-    gyro[3]对应roll,pitch,yaw
+(2)BMI088_read(float accel[3],float gyro[3],float* temperature);
+读数据
+(在main.c中全局定义好float accel[3],gyro[3],temperature;)
+accel[3]对应x,y,z
+gyro[3]对应roll,pitch,yaw
     (坐标):
            x
            |

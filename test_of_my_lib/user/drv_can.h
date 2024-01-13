@@ -16,12 +16,12 @@ CAN2_TX PB6
 fifo1和fifo0两个中断回调函数的模板，data用于接收数据
 void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan){
 	CAN_RxHeaderTypeDef header;
-	uint8_t data[8]; //用于接收数据(不知道为什么，这里不能是uint8_t* data;)
+	uint8_t data[8]; //用于接收数据(不知道为什么，这里不能是uint8_t* data;)(知道了，只定义指针没有开辟连续的数组空间)
 	HAL_CAN_GetRxMessage(hcan,CAN_FILTER_FIFO1,&header,data);
 }
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan){
 	CAN_RxHeaderTypeDef header;
-	uint8_t data[8]; //用于接收数据(不知道为什么，这里不能是uint8_t* data;)
+	uint8_t data[8]; //用于接收数据(不知道为什么，这里不能是uint8_t* data;)(知道了，只定义指针没有开辟连续的数组空间)
 	HAL_CAN_GetRxMessage(hcan,CAN_FILTER_FIFO0,&header,data);
 }
 */
@@ -39,7 +39,6 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan){
 #define CAN_DATA_TYPE (0<<0)
 #define CAN_REMOTE_TYPE (1<<0)
 
-extern uint8_t can_tx_buffer[8];
 
 
 void CAN_Init(CAN_HandleTypeDef *hcan);

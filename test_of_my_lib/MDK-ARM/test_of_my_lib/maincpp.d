@@ -38,6 +38,7 @@ test_of_my_lib\maincpp.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_
 test_of_my_lib\maincpp.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 test_of_my_lib\maincpp.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 test_of_my_lib\maincpp.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
+test_of_my_lib\maincpp.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 test_of_my_lib\maincpp.o: ../Core/Inc/adc.h
 test_of_my_lib\maincpp.o: ../Core/Inc/can.h
 test_of_my_lib\maincpp.o: ../Core/Inc/dma.h
@@ -45,6 +46,7 @@ test_of_my_lib\maincpp.o: ../Core/Inc/i2c.h
 test_of_my_lib\maincpp.o: ../Core/Inc/spi.h
 test_of_my_lib\maincpp.o: ../Core/Inc/tim.h
 test_of_my_lib\maincpp.o: ../Core/Inc/gpio.h
+test_of_my_lib\maincpp.o: ../Core/Inc/usart.h
 test_of_my_lib\maincpp.o: ..\user\PS2.h
 test_of_my_lib\maincpp.o: D:\keil\ARM\ARMCC\Bin\..\include\stdio.h
 test_of_my_lib\maincpp.o: D:\keil\ARM\ARMCC\Bin\..\include\stdlib.h
@@ -55,3 +57,4 @@ test_of_my_lib\maincpp.o: ..\user\BMI088.h
 test_of_my_lib\maincpp.o: ..\user\ADCtest.h
 test_of_my_lib\maincpp.o: ..\user\drv_can.h
 test_of_my_lib\maincpp.o: ..\user\RMmotor.hpp
+test_of_my_lib\maincpp.o: ..\user\serialplot.hpp
