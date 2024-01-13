@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "ps2.h": "c",
+        "ist8310.h": "c",
+        "i2c_oled.hpp": "c",
+        "bmi088.h": "c",
+        "main.h": "c",
+        "adctest.h": "c",
+        "adc.h": "c",
+        "drv_can.h": "c"
+    }
+}
