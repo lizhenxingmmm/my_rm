@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "rmmotor.h": "c",
+        "gpio.h": "c",
+        "pid.h": "c",
+        "gimbal_task.h": "c",
+        "voltage_task.h": "c",
+        "spring_motor_task.h": "c",
+        "message_task.h": "c",
+        "math.h": "c",
+        "nrf24l01.h": "c"
+    }
+}
